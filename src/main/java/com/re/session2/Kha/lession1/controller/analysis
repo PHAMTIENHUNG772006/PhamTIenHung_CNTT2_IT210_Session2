@@ -1,0 +1,10 @@
+Lỗi trong MyWebAppInitializer.java: Giải thích tại sao "/api/*" khiến mọi request đến /welcome đều bị 404. DispatcherServlet đang nghe những URL nào với cấu hình này?
+
+-> do request cần bắt mọi url nên nếu để cấu hình /api/* chỉ cho phép Spring xử lý các URL bắt đầu bằng /api/. Request /welcome không khớp nên bị Tomcat chặn lại nên tắt cả đều 404
+
+Lỗi trong WebConfig.java: @ComponentScan(basePackages = "com.demo.service") gây ra hậu quả gì? Spring MVC tìm @Controller ở đâu và không thể tìm thấy ở đâu theo cấu hình này?
+@ComponentScan chỉ quét package service nên Spring không tìm thấy @Controller
+
+Tổng hợp: Nếu chỉ sửa lỗi 1 (Servlet Mapping) mà không sửa lỗi 2 (ComponentScan), ứng dụng có chạy không? Tại sao?
+
+không, vì hệ thống không thể quét được Dù Servlet mapping đúng để dẫn khách vào nhà (DispatcherServlet), nhưng bên trong lại không có chủ nhà (Controller) nào đứng ra tiếp khách do không được quét thấy.
