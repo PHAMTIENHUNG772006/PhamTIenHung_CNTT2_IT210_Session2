@@ -19,6 +19,11 @@
 </head>
 <body>
 
+<form action="<c:url value='/events/search'/>" method="GET">
+    <input type="text" name="keyword" value="<c:out value='${keyword}'/>" placeholder="Nhập tên sự kiện..." />
+    <button type="submit">Tìm kiếm</button>
+</form>
+
 <%-- A. Phần header tìm kiếm --%>
 <div>
     <%-- CHỐNG XSS: Luôn dùng c:out cho dữ liệu người dùng nhập --%>
